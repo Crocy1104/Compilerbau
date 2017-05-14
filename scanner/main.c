@@ -1,4 +1,4 @@
-//* Project:  COCKTAIL training
+/* Project:  COCKTAIL training
  * Descr:    A simple scanner generated with rex
  * Kind:     C-main function, fully implemented solution
  * Author:   Dr. Juergen Vollmer <juergen.vollmer@informatik-vollmer.d
@@ -37,6 +37,104 @@ int main (int argc, char *argv[])
 	printf ("int_const    : %s\n",l_scan_Attribute.int_const.Value);
 	break;
 	/* add code to emit your tokens here */
+      case tok_identifier:
+      	printf ("identifier   : %s\n",l_scan_Attribute.identifier.Value);
+	break;
+      case tok_float_const:
+	printf ("float_const  : %s\n",l_scan_Attribute.float_const.Value);
+	break;
+      case tok_string_const:
+	printf ("string_const : %s\n",l_scan_Attribute.string_const.Value);
+	break;
+
+      case tok_PROGRAMM:
+	printf ("PROGRAMM\n");
+	break;     
+      case tok_BEGIN:
+	printf ("BEGIN\n");
+	break;
+      case tok_END:
+	printf ("END\n");
+	break;
+
+      case tok_VARIABLES:
+	printf ("VARIABLES\n");
+	break;
+      case tok_INPUT:
+	printf ("INPUT\n");
+	break;
+      case tok_OUTPUT:
+	printf ("OUTPUT\n");
+	break;
+      case tok_STRING:
+	printf ("STRING\n");
+	break;
+      case tok_INT:
+	printf ("INT\n");
+	break;
+      case tok_FLOAT:
+	printf ("FLOAT\n");
+	break;
+  
+	
+      case tok_IF:
+	printf ("IF\n");
+	break;
+      case tok_ELSE:
+	printf ("ELSE\n");
+	break;
+      case tok_FOR:
+	printf ("FOR\n");
+	break;
+      case tok_WHILE:
+	printf ("WHILE\n");
+	break;
+      case tok_DOPPELPUNKT:
+	printf ("DOPPELPUNKT\n");
+	break;
+      case tok_SEMIKOLON:
+	printf ("SEMIKOLON\n");
+	break;
+      case tok_ENDFOR:
+	printf ("ENDFOR\n");
+	break;
+      case tok_ENDWHILE:
+	printf ("ENDWHILE\n");
+	break;
+      case tok_ENDIF:
+	printf ("ENDIF\n");
+	break;
+	
+      case tok_LT:
+	printf ("<\n");
+	break;
+      case tok_GT:
+	printf (">\n");
+	break;
+      case tok_EQUAL:
+	printf ("= EQUALS\n");
+	break;
+
+      case tok_PLUS:
+	printf ("+\n");
+	break;
+      case tok_MINUS:
+	printf ("-\n");
+	break;
+      case tok_DIVIDE:
+	printf ("/\n");
+	break;
+      case tok_MULT:
+	printf ("*\n");
+	break;
+      case tok_BRACKETOP:
+	printf ("(\n");
+	break;
+      case tok_BRACKETCL:
+	printf (")\n");
+	break;
+      
+	
       default: fprintf (stderr, "FATAL ERROR, unknown token\n");
       }
    }
