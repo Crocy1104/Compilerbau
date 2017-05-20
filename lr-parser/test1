@@ -1,6 +1,16 @@
--- an expression language
+-- Language X faculty
 
-3 + 4,
-12 * (3 + 4),
-12 * -(3 + 4),
-12 / (3 - 3)
+PROGRAMM fakultaet
+VARIABLES
+  INPUT INT n;
+  INT m;
+  OUTPUT INT f;
+END VARIABLES
+BEGIN
+  f = 1;
+  m = 2;
+  WHILE m<n+1 DO
+      f=f*m;
+      m=m+1;
+  ENDWHILE;
+END

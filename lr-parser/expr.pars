@@ -26,31 +26,163 @@ GLOBAL {
  # include <stdio.h>
 }
 
+PREC LEFT '<' '>' '=='
+     LEFT  '+' '-'
+     LEFT  '*' '/'
+
 RULE
 
-root = expr.
+root = programm.
 
-expr = <
-	= expr '+' term
+programm = <
+	= 'PROGRAMM' identifier 'VARIABLES' eingabe ';' deklarationen1 ausgabe ';' 'END VARIABLES' 'BEGIN' befehl ';' 'END'
 	.
+> .
+
+
+
+typ = <
+	= 'STRING'
+	.
+	= 'INT'
+	.
+	= 'FLOAT'
+	.
+> .
+
+deklarationen1  = <
+	= /* epsilon */
+	.
+	= deklarationen1 deklarationen ';'
+	.
+> . /* decl_l */
+
+deklarationen   = <
+	= typ identifier
+	.
+> . 
+
+
+befehl  = <
+	= /* epsilon */
+	.
+	= befehl befehl1
+	.
+> . /* anw_l */
+
+befehl1    = <
+      = zuwe
+      .
+      = ifelse
+      .
+      = whiledo
+      .
+      = fordo
+      .
+> .
+
+
+ifelse = <
+	= 'IF' bed 'THEN' befehl 'ENDIF'
+	.
+	= 'IF' bed 'THEN' befehl 'ELSE' befehl 'ENDIF'
+	.
+> .
+
+whiledo = <
+	= 'WHILE' bed 'DO' befehl 'ENDWHILE'
+	.
+> .
+
+
+fordo   = <
+	= 'FOR' bed ';' anw 'DO' befehl 'ENDFOR'
+	.
+> .
+
+bed     = <
+	= formel compop formel
+	.
+> .
+
+compop  = <
+	= '>'
+	.
+	= '<'
+	.
+	= '=='
+	.
+> .
+
+zuwe    = <
+	= identifier '=' konkat ';'
+	.
+	= identifier '=' formel ';'
+	.
+> .
+
+konkat  = <
+	= string_const 
+	.
+	= string_const '+' string_const
+	.
+	= string_const '+' identifier
+	.
+> .
+
+formel  = <
 	= term
 	.
-> .
-
-term = <
-	= term '*' factor
+	= formel '+' term
 	.
-	= factor
+	= formel '-' term
 	.
 > .
 
-factor = <
+term    = <
+	= faktor
+	.
+	= term '*' negfak
+	.
+	= term '/' negfak
+	.
+> .
+
+negfak  = <
+	= faktor
+	.
+	= '-' faktor
+	.
+>.
+
+faktor  = <
 	= int_const
 	.
 	= float_const
 	.
+	= identifier
+	.
+	= '(' formel ')'
+	.
 > .
+
+
+eingabe = <
+	= /* epsilon */
+	.
+	= 'INPUT' typ identifier
+	.
+> . 
+
+ausgabe = <
+	= /* epsilon */
+	.
+	= 'OUTPUT' typ identifier
+	.
+> . 
 
 /* Tokens */
 int_const:    [Value: long]   {Value := 0;  } .
 float_const:  [Value: double] {Value := 0.0;} .
+string_const: [Value: tIdent] {Value := NoIdent;} .
+identifier: [Ident: tIdent] {Ident := NoIdent; } .
