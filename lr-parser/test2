@@ -1,17 +1,15 @@
 -- Language X error
 
-PROGRAM fakultaet
-DECLARATIONS
+PROGRAMM fakultaet
+VARIABLES
   INPUT INT n
-  OUTPUT INT f;
   INT m;
-BEGINN
+  OUTPUT INT f;
+END VARIABLES
+BEGIN
   f = 1;
   m = 2;
   WHILE m<n+1 DO
-    BEGIN
       f=f*m;
       m=m+1;
-    END.
-  ENDWHILE.
-END.
+END
