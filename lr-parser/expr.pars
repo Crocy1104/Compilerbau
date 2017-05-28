@@ -55,7 +55,7 @@ deklarationen1  = <
 	.
 	= deklarationen1 deklarationen ';'
 	.
-> . /* decl_l */
+> . /* deklarationen1 */
 
 deklarationen   = <
 	= typ identifier
@@ -68,7 +68,7 @@ befehl  = <
 	.
 	= befehl befehl1
 	.
-> . /* anw_l */
+> . /* befehl1 */
 
 befehl1    = <
       = zuwe
@@ -83,29 +83,29 @@ befehl1    = <
 
 
 ifelse = <
-	= 'IF' bed 'THEN' befehl 'ENDIF'
+	= 'IF' bedingung 'THEN' befehl 'ENDIF'
 	.
-	= 'IF' bed 'THEN' befehl 'ELSE' befehl 'ENDIF'
+	= 'IF' bedingung 'THEN' befehl 'ELSE' befehl 'ENDIF'
 	.
 > .
 
 whiledo = <
-	= 'WHILE' bed 'DO' befehl 'ENDWHILE'
+	= 'WHILE' bedingung 'DO' befehl 'ENDWHILE'
 	.
 > .
 
 
 fordo   = <
-	= 'FOR' bed ';' anw 'DO' befehl 'ENDFOR'
+	= 'FOR' bedingung ';' zuwe 'DO' befehl 'ENDFOR'
 	.
 > .
 
-bed     = <
-	= formel compop formel
+bedingung     = <
+	= formel op formel
 	.
 > .
 
-compop  = <
+op  = <
 	= '>'
 	.
 	= '<'
