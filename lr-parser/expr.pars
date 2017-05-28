@@ -140,7 +140,7 @@ formel  = <
 > .
 
 term    = <
-	= faktor
+	= negfak
 	.
 	= term '*' negfak
 	.
